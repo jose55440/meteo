@@ -11,6 +11,8 @@ import rain from '../assets/lluvioso.png';
 import thunderstorm from '../assets/tormenta.png';
 import snow from '../assets/tormenta.png'; 
 import mist from '../assets/lluvioso.png';
+import { SelectCity } from './SelectCity';
+
 
 // Objeto que mapea los códigos de tiempo meteorológico a las imágenes
 const weatherIconMap = {
@@ -29,7 +31,7 @@ const weatherIconMap = {
 const WeatherComponent = () => {
   const [location, setLocation] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
-
+  
   useEffect(() => {
     // Solicitar permiso para acceder a la ubicación del usuario
     navigator.geolocation.getCurrentPosition(
@@ -44,6 +46,20 @@ const WeatherComponent = () => {
       }
     );
   }, []);
+
+  const handleCity=city=>{
+    const apiKey = 'b14a38bd4b1d38a3fc6d998bf6bbb5c2';
+    console.log(city)
+    async function peticion() {
+      const url=`http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=${apiKey}`
+      const datatype= await fetch(url);
+      const response= await datatype.json()
+       console.log(response);
+    
+    }
+    
+    peticion();
+  }
 
   useEffect(() => {
     // Hacer la llamada a la API de OpenWeatherMap si se tiene la ubicación
@@ -67,6 +83,8 @@ const WeatherComponent = () => {
       {location && !weatherData && <p>Cargando datos meteorológicos...</p>}
       {weatherData && (
         <div>
+          <SelectCity handleCity={handleCity} />
+
           <img
             src={weatherIconMap[weatherData.weather[0].icon]}
             alt={weatherData.weather[0].description}
