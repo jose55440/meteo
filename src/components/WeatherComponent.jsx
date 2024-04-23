@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import MapComponent from './MapComponent';
 
 // Importar las imágenes
-import soleado from './assets/Sunny.png';
-import nublado from './assets/nublado.png';
-import scatteredClouds from './assets/muy nublado.png';
-import nubesyclaros from './assets/Nubes y claros.png';
-import showerRain from './assets/lluvioso.png';
-import rain from './assets/lluvioso.png';
-import thunderstorm from './assets/tormenta.png';
-import snow from './assets/tormenta.png'; 
-import mist from './assets/lluvioso.png';
+import soleado from '../assets/Sunny.png';
+import nublado from '../assets/nublado.png';
+import scatteredClouds from '../assets/muy nublado.png';
+import nubesyclaros from '../assets/Nubes y claros.png';
+import showerRain from '../assets/lluvioso.png';
+import rain from '../assets/lluvioso.png';
+import thunderstorm from '../assets/tormenta.png';
+import snow from '../assets/tormenta.png'; 
+import mist from '../assets/lluvioso.png';
 
 // Objeto que mapea los códigos de tiempo meteorológico a las imágenes
 const weatherIconMap = {
