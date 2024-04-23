@@ -4,7 +4,7 @@ import WeatherComponent from './WeatherComponent.jsx';
 function App() {
   return (
     <div>
-      <h1>Aplicación del tiempo</h1>
+      <h2>Ahora mismo tu tiempo es...</h2>
       <WeatherComponent />
     </div>
   );

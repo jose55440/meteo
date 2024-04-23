@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import MapComponent from './MapComponent';
 
 // Importar las imágenes
-import sunnyClear from './assets/Sunny.png';
-import fewClouds from './assets/nublado.png';
+import soleado from './assets/Sunny.png';
+import nublado from './assets/nublado.png';
 import scatteredClouds from './assets/muy nublado.png';
-import brokenClouds from './assets/Nubes y claros.png';
+import nubesyclaros from './assets/Nubes y claros.png';
 import showerRain from './assets/lluvioso.png';
 import rain from './assets/lluvioso.png';
 import thunderstorm from './assets/tormenta.png';
@@ -14,10 +14,10 @@ import mist from './assets/lluvioso.png';
 
 // Objeto que mapea los códigos de tiempo meteorológico a las imágenes
 const weatherIconMap = {
-  '01d': sunnyClear,
-  '02d': fewClouds,
+  '01d': soleado,
+  '02d': nublado,
   '03d': scatteredClouds,
-  '04d': brokenClouds,
+  '04d': nubesyclaros,
   '09d': showerRain,
   '10d': rain,
   '11d': thunderstorm,
@@ -49,8 +49,7 @@ const WeatherComponent = () => {
     // Hacer la llamada a la API de OpenWeatherMap si se tiene la ubicación
     if (location) {
       const apiKey = 'b14a38bd4b1d38a3fc6d998bf6bbb5c2';
-      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${apiKey}&units=metric`;
-
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${apiKey}&units=metric&lang=sp`;
       fetch(apiUrl)
         .then((response) => response.json())
         .then((data) => {
