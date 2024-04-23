@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import MapComponent from './MapComponent';
 
 const WeatherComponent = () => {
   const [location, setLocation] = useState(null);
@@ -47,6 +48,7 @@ const WeatherComponent = () => {
           <p>Descripción: {weatherData.weather[0].description}</p>
         </div>
       )}
+      {location && <MapComponent location={location} />}
     </div>
   );
 };
