@@ -1,6 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import MapComponent from './MapComponent';
 
+// Importar las imágenes
+import sunnyClear from './assets/Sunny.png';
+import fewClouds from './assets/nublado.png';
+import scatteredClouds from './assets/muy nublado.png';
+import brokenClouds from './assets/Nubes y claros.png';
+import showerRain from './assets/lluvioso.png';
+import rain from './assets/lluvioso.png';
+import thunderstorm from './assets/tormenta.png';
+import snow from './assets/tormenta.png'; 
+import mist from './assets/lluvioso.png';
+
+// Objeto que mapea los códigos de tiempo meteorológico a las imágenes
+const weatherIconMap = {
+  '01d': sunnyClear,
+  '02d': fewClouds,
+  '03d': scatteredClouds,
+  '04d': brokenClouds,
+  '09d': showerRain,
+  '10d': rain,
+  '11d': thunderstorm,
+  '13d': snow,
+  '50d': mist,
+  // Agregar más códigos y sus imágenes correspondientes si es necesario
+};
+
 const WeatherComponent = () => {
   const [location, setLocation] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
@@ -43,9 +68,17 @@ const WeatherComponent = () => {
       {location && !weatherData && <p>Cargando datos meteorológicos...</p>}
       {weatherData && (
         <div>
-          <h2>{weatherData.name}</h2>
-          <p>Temperatura: {weatherData.main.temp}°C</p>
-          <p>Descripción: {weatherData.weather[0].description}</p>
+          <img
+            src={weatherIconMap[weatherData.weather[0].icon]}
+            alt={weatherData.weather[0].description}
+            width="100"
+            height="100"
+          />
+          <p>
+            {weatherData.weather[0].description.charAt(0).toUpperCase() +
+              weatherData.weather[0].description.slice(1)}{' '}
+            en {weatherData.name}
+          </p>
         </div>
       )}
       {location && <MapComponent location={location} />}
