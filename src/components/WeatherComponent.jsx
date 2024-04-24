@@ -31,6 +31,7 @@ const weatherIconMap = {
 const WeatherComponent = () => {
   const [location, setLocation] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
+  const [nameLocatio,setNameLocation] = useState([])
   
   useEffect(() => {
     // Solicitar permiso para acceder a la ubicación del usuario
@@ -51,30 +52,45 @@ const WeatherComponent = () => {
     const apiKey = 'b14a38bd4b1d38a3fc6d998bf6bbb5c2';
     console.log(city)
     async function peticion() {
-      const url=`http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=${apiKey}`
+      const url=`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`
       const datatype= await fetch(url);
       const response= await datatype.json()
-       console.log(response);
+       console.log(response)
     
     }
+    peticion()
     
-    peticion();
   }
 
   useEffect(() => {
-    // Hacer la llamada a la API de OpenWeatherMap si se tiene la ubicación
-    if (location) {
-      const apiKey = 'b14a38bd4b1d38a3fc6d998bf6bbb5c2';
-      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${apiKey}&units=metric&lang=sp`;
-      fetch(apiUrl)
-        .then((response) => response.json())
-        .then((data) => {
+    // Definir una función asíncrona para hacer la solicitud a la API de OpenWeatherMap
+    const fetchWeatherData = async () => {
+      // Verificar si hay una ubicación
+      if (location) {
+        const apiKey = 'b14a38bd4b1d38a3fc6d998bf6bbb5c2';
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${apiKey}&units=metric&lang=sp`;
+        
+        try {
+          // Realizar la solicitud a la API y obtener la respuesta
+          const response = await fetch(apiUrl);
+          if (!response.ok) {
+            throw new Error('Error al obtener los datos meteorológicos');
+          }
+          
+          // Convertir la respuesta a formato JSON
+          const data = await response.json();
+          
+          // Establecer los datos meteorológicos en el estado
           setWeatherData(data);
-        })
-        .catch((error) => {
+        } catch (error) {
+          // Manejar errores
           console.error('Error al obtener los datos meteorológicos:', error);
-        });
-    }
+        }
+      }
+    };
+  
+    // Llamar a la función asíncrona
+    fetchWeatherData();
   }, [location]);
 
   return (
