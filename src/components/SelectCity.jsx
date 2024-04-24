@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { fetchNames } from "../helpers/fetchNames";
 
 export const SelectCity = ({ handleCity }) => {
@@ -18,12 +18,20 @@ export const SelectCity = ({ handleCity }) => {
     console.log(data)
     setData(data);
   };
+  useEffect(() => {
+    // Verifica si finalData está definido
+    if (finalData) {
+      // Concatena el nombre y el estado si está disponible
+      setInput(`${finalData.name}-${finalData.state ? finalData.state : ''}`);
+    }
+    console.log(finalData);
+  }, [finalData]);
   // Con este metodo seleccionamos la ciudad de todas las que nos devuelve el fetch
   const selectFinalData = (city) => {
     // Lo guardamos como la seleccion final 
     setFinalData(city)
     // Concatenamos las dos cosas para que se sobre escriba en el input  
-    setInput(finalData.name+'-'+finalData.state)
+    setInput(finalData.name+'-'+finalData.state?finalData.state:'')
     console.log(finalData)
 };
 
