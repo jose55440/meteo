@@ -4,7 +4,7 @@ import { fetchNames } from "../helpers/fetchNames";
 export const SelectCity = ({ handleCity }) => {
   const [input, setInput] = useState("");
   const [data, setData] = useState([]);
-  const [finalData, setFinalData] = useState();
+  const [finalData, setFinalData] = useState('');
   const handleInput = (e) => {
     setInput(e.target.value);
   };
@@ -20,6 +20,7 @@ export const SelectCity = ({ handleCity }) => {
 
   const selectFinalData = (city) => {
     setFinalData(city)
+    setInput(finalData.name+'-'+finalData.state)
     console.log(finalData)
 };
 
@@ -36,7 +37,7 @@ export const SelectCity = ({ handleCity }) => {
       <button type="submit">Buscar</button>
       {data &&
   data.map((city) => (
-    <li key={city.id} onClick={(city) => selectFinalData(city)}>
+    <li key={city.id} onClick={() => selectFinalData(city)}>
       {city.name}-{city.state}
     </li>
   ))}
