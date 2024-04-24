@@ -9,11 +9,11 @@ export const SelectCity = ({ handleCity }) => {
     setInput(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (!input.trim()) return; // Evita agregar una tarea vacía
     console.log(input)
-     const { data } =  fetchNames(input);
+     const { data } =    await fetchNames(input);
     console.log(data)
     setData(data);
   };
@@ -35,11 +35,11 @@ export const SelectCity = ({ handleCity }) => {
       />
       <button type="submit">Buscar</button>
       {data &&
-        data.map((city) => {
-          <li onClick={selectFinalData(city)}>
-            {city.name}-{city.state}
-          </li>;
-        })}
+  data.map((city) => (
+    <li key={city.id} onClick={(city) => selectFinalData(city)}>
+      {city.name}-{city.state}
+    </li>
+  ))}
     </form>
   );
 };
