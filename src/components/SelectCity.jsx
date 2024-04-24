@@ -12,7 +12,9 @@ export const SelectCity = ({ handleCity }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!input.trim()) return; // Evita agregar una tarea vacía
-    const { data } = fetchNames(input);
+    console.log(input)
+     const { data } =  fetchNames(input);
+    console.log(data)
     setData(data);
   };
 
