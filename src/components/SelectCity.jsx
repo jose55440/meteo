@@ -13,18 +13,22 @@ export const SelectCity = ({ handleCity }) => {
     e.preventDefault();
     if (!input.trim()) return; // Evita agregar una tarea vacía
     console.log(input)
+    // Hace el fetch y te devulve un [] el cual es el que se muestra en la sublista 
      const { data } =    await fetchNames(input);
     console.log(data)
     setData(data);
   };
-
+  // Con este metodo seleccionamos la ciudad de todas las que nos devuelve el fetch
   const selectFinalData = (city) => {
+    // Lo guardamos como la seleccion final 
     setFinalData(city)
+    // Concatenamos las dos cosas para que se sobre escriba en el input  
     setInput(finalData.name+'-'+finalData.state)
     console.log(finalData)
 };
 
   return (
+    // Al escribir en el input busca en el handleSubmit
     <form onSubmit={handleSubmit}>
       <input
         type="text"
@@ -35,6 +39,7 @@ export const SelectCity = ({ handleCity }) => {
         placeholder="Ingrese una nueva tarea"
       />
       <button type="submit">Buscar</button>
+      {/* Muestra una sublista que al darle click en uno de ellos se pone en el input  */}
       {data &&
   data.map((city) => (
     <li key={city.id} onClick={() => selectFinalData(city)}>
