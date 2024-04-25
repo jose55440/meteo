@@ -80,6 +80,7 @@ const WeatherComponent = () => {
           
           // Establecer los datos meteorológicos en el estado
           setWeatherData(data);
+          console.log(data)
         } catch (error) {
           // Manejar errores
           console.error('Error al obtener los datos meteorológicos:', error);
