@@ -31,8 +31,9 @@ export const SelectCity = ({ handleCity }) => {
     // Lo guardamos como la seleccion final 
     setFinalData(city)
     // Concatenamos las dos cosas para que se sobre escriba en el input  
-    setInput(finalData.name+'-'+finalData.state?finalData.state:'')
+    setInput(finalData.name+''+finalData.state?'-'+finalData.state:'')
     console.log(finalData)
+    handleCity(city)
 };
 
   return (

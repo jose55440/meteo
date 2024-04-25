@@ -31,7 +31,7 @@ const weatherIconMap = {
 const WeatherComponent = () => {
   const [location, setLocation] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
-  const [nameLocatio,setNameLocation] = useState([])
+  
   
   useEffect(() => {
     // Solicitar permiso para acceder a la ubicación del usuario
@@ -49,16 +49,13 @@ const WeatherComponent = () => {
   }, []);
 
   const handleCity=city=>{
-    const apiKey = 'b14a38bd4b1d38a3fc6d998bf6bbb5c2';
-    console.log(city)
-    async function peticion() {
-      const url=`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`
-      const datatype= await fetch(url);
-      const response= await datatype.json()
-       console.log(response)
     
-    }
-    peticion()
+    console.log(city)
+    setLocation({
+      lat: city.lat,
+      lon: city.lon,
+    })
+    console.log(location)
     
   }
 
@@ -73,6 +70,7 @@ const WeatherComponent = () => {
         try {
           // Realizar la solicitud a la API y obtener la respuesta
           const response = await fetch(apiUrl);
+          console.log(response)
           if (!response.ok) {
             throw new Error('Error al obtener los datos meteorológicos');
           }
