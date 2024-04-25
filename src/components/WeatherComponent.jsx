@@ -116,6 +116,9 @@ const WeatherComponent = () => {
         </div>
       )}
       {location && <MapComponent location={location} />}
+
+
+      <span>By: <a href="https://github.com/ZarpAgent47">ZarpAgent</a>, <a href="https://github.com/N3BUL0S4">N3BUL0S4</a>, <a href="https://github.com/jose55440">jose55440</a></span>
     </div>
   );
 };
