@@ -50,12 +50,12 @@ const WeatherComponent = () => {
 
   const handleCity=city=>{
     
-    console.log(city)
+    
     setLocation({
       lat: city.lat,
       lon: city.lon,
     })
-    console.log(location)
+   
     
   }
 
@@ -70,7 +70,7 @@ const WeatherComponent = () => {
         try {
           // Realizar la solicitud a la API y obtener la respuesta
           const response = await fetch(apiUrl);
-          console.log(response)
+          
           if (!response.ok) {
             throw new Error('Error al obtener los datos meteorológicos');
           }
@@ -80,7 +80,7 @@ const WeatherComponent = () => {
           
           // Establecer los datos meteorológicos en el estado
           setWeatherData(data);
-          console.log(data)
+          
         } catch (error) {
           // Manejar errores
           console.error('Error al obtener los datos meteorológicos:', error);
@@ -94,12 +94,14 @@ const WeatherComponent = () => {
 
   return (
     <div>
+      
       {!location && <p>Obteniendo ubicación...</p>}
+      
       {location && !weatherData && <p>Cargando datos meteorológicos...</p>}
       {weatherData && (
         <div>
+          
           <SelectCity handleCity={handleCity} />
-
           <img
             src={weatherIconMap[weatherData.weather[0].icon]}
             alt={weatherData.weather[0].description}
