@@ -10,7 +10,7 @@ const MapComponent = ({ location }) => {
   };
 
   const containerStyle = {
-    width: '30vw',
+    width: '50vw',
     height: '50vh',
     position: 'relative',
     

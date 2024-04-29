@@ -71,7 +71,7 @@ const WeatherComponent = () => {
 
           // Convertir la respuesta a formato JSON
           const data = await response.json();
-          
+
           // Establecer los datos meteorológicos en el estado
           setWeatherData(data);
         } catch (error) {
@@ -86,40 +86,41 @@ const WeatherComponent = () => {
   }, [location]);
 
   return (
-    <div>
+    <div >
+      
       {!location && <p>Obteniendo ubicación...</p>}
 
       {location && !weatherData && <p>Cargando datos meteorológicos...</p>}
       {weatherData && (
-        <div>
+        <div className="d-flex justify-content-center">
           <SelectCity handleCity={handleCity} />
-          <div className="card">
-            <div className="row g-0">
-              <div className="col-7 col-sm-8">
-                <div className="card-body m-5 ">
-                  <img
+
+          <div className="card-group">
+            <div className="card">
+              <div className="card-body">
+              {location && <MapComponent location={location} />}
+              </div>
+            </div>
+            <div className="card  modal-dialog-centered">
+              <div className="card-body ">
+                <img
                     src={weatherIconMap[weatherData.weather[0].icon]}
-                    className="img-fluid card-title"
+                    className="img-fluid"
                     alt={weatherData.weather[0].description}
                     width="250"
                     height="100"
                   />
                   <p>
-                    {weatherData.weather[0].description
-                      .charAt(0)
-                      .toUpperCase() +
-                      weatherData.weather[0].description.slice(1)}{" "}
-                    en {weatherData.name}
-                  </p>
-                </div>
-
-                
+                  {weatherData.weather[0].description.charAt(0).toUpperCase() +
+                    weatherData.weather[0].description.slice(1)}{" "}
+                  en {weatherData.name}
+                </p>
               </div>
-              <div className="col-5 col-sm-4">
-                  {location && <MapComponent location={location} />}
-                </div>
             </div>
+            
           </div>
+
+          
         </div>
       )}
 
