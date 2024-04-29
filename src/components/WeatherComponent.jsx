@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MapComponent from './MapComponent';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 // Importar las imágenes
 import soleado from '../assets/Sunny.png';
@@ -102,12 +104,27 @@ const WeatherComponent = () => {
         <div>
           
           <SelectCity handleCity={handleCity} />
-          <img
-            src={weatherIconMap[weatherData.weather[0].icon]}
-            alt={weatherData.weather[0].description}
-            width="100"
-            height="100"
-          />
+          <div className="card">
+            <div className="row g-0">
+              <div className="col-5 col-sm-4">
+              {location && <MapComponent location={location} />}
+              </div>
+              <div className="col-7 col-sm-8">
+                <div className="card-body">
+                <img
+                  src={weatherIconMap[weatherData.weather[0].icon]}
+                  className="img-fluid card-title"
+                  alt={weatherData.weather[0].description}
+                  width="250"
+                  height="100"
+                />
+                  <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                  <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+         
           <p>
             {weatherData.weather[0].description.charAt(0).toUpperCase() +
               weatherData.weather[0].description.slice(1)}{' '}

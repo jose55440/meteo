@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchNames } from "../helpers/fetchNames";
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+
 
 export const SelectCity = ({ handleCity }) => {
   const [input, setInput] = useState("");
@@ -39,23 +41,30 @@ export const SelectCity = ({ handleCity }) => {
 
   return (
     // Al escribir en el input busca en el handleSubmit
+    <div className="container"> 
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="text"
-        id="text"
-        value={input}
-        onChange={handleInput}
-        placeholder="Ingrese una nueva tarea"
-      />
-      <button type="submit">Buscar</button>
-      {/* Muestra una sublista que al darle click en uno de ellos se pone en el input  */}
-      {data &&
-        data.map((city) => (
-          <li key={city.id} onClick={() => selectFinalData(city)}>
-            {city.name}-{city.state}
-          </li>
-        ))}
+      <div className="input-group">
+
+        <input
+          type="text"
+          className="form-control"
+          name="text"
+          id="text"
+          placeholder="Ingrese una ciudad"
+          value={input}
+          onChange={handleInput}
+        />
+        <button type="submit" className="btn btn-outline-secondary" id="input-group-button-left">Buscar</button>
+        {/* Muestra una sublista que al darle click en uno de ellos se pone en el input  */}
+        {data &&
+          data.map((city) => (
+            <li key={city.id} onClick={() => selectFinalData(city)}>
+              {city.name}-{city.state}
+            </li>
+          ))}
+      </div>
     </form>
+    </div>
+    
   );
 };
