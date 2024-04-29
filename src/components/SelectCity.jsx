@@ -40,6 +40,10 @@ export const SelectCity = ({ handleCity }) => {
   };
 
   return (
+
+
+
+    
     // Al escribir en el input busca en el handleSubmit
     <div className="container"> 
     <form onSubmit={handleSubmit}>
@@ -56,15 +60,17 @@ export const SelectCity = ({ handleCity }) => {
         />
         <button type="submit" className="btn btn-outline-secondary" id="input-group-button-left">Buscar</button>
         {/* Muestra una sublista que al darle click en uno de ellos se pone en el input  */}
-        <ul className="list-group">
-        {data &&
         
-          data.map((city) => (
-            <li key={city.id} className="list-group-item" onClick={() => selectFinalData(city)}>
+        {data &&
+        <ul className="list-group dropdown-menu mt-5">
+          {data.map((city) => (
+            <li key={city.id} className="list-group-item dropdown-item" onClick={() => selectFinalData(city)}>
               {city.name}-{city.state}
             </li>
-          ))}
-          </ul>
+
+          ))}</ul>
+        }
+          
       </div>
     </form>
     </div>
