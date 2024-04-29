@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import MapComponent from './MapComponent';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 // Importar las imágenes
@@ -110,7 +109,7 @@ const WeatherComponent = () => {
               {location && <MapComponent location={location} />}
               </div>
               <div className="col-7 col-sm-8">
-                <div className="card-body">
+                <div className="card-body m-5">
                 <img
                   src={weatherIconMap[weatherData.weather[0].icon]}
                   className="img-fluid card-title"
@@ -132,7 +131,6 @@ const WeatherComponent = () => {
           </p>
         </div>
       )}
-      {location && <MapComponent location={location} />}
 
 
       <span>By: <a href="https://github.com/ZarpAgent47">ZarpAgent</a>, <a href="https://github.com/N3BUL0S4">N3BUL0S4</a>, <a href="https://github.com/jose55440">jose55440</a></span>
