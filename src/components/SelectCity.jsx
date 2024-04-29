@@ -56,12 +56,15 @@ export const SelectCity = ({ handleCity }) => {
         />
         <button type="submit" className="btn btn-outline-secondary" id="input-group-button-left">Buscar</button>
         {/* Muestra una sublista que al darle click en uno de ellos se pone en el input  */}
+        <ul className="list-group">
         {data &&
+        
           data.map((city) => (
-            <li key={city.id} onClick={() => selectFinalData(city)}>
+            <li key={city.id} className="list-group-item" onClick={() => selectFinalData(city)}>
               {city.name}-{city.state}
             </li>
           ))}
+          </ul>
       </div>
     </form>
     </div>
