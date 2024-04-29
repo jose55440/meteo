@@ -12,6 +12,9 @@ const MapComponent = ({ location }) => {
   const containerStyle = {
     width: '30vw',
     height: '50vh',
+    position: 'relative',
+    
+    zIndex:0,
   };
 
   useEffect(() => {
