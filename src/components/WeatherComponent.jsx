@@ -91,18 +91,10 @@ const WeatherComponent = () => {
 
       {location && !weatherData && <p>Cargando datos meteorológicos...</p>}
       {weatherData && (
-        <div className="d-flex justify-content-center">
-          <SelectCity handleCity={handleCity} />
-
-          <div className="card-group ">
-            <div className="card">
-              <div className="card-body">
-                {location && <MapComponent location={location} />}
-              </div>
-            </div>
-            <div className="card  modal-dialog-centered">
-              <div className="card-body ">
-                <img
+          <div className="row">
+            <div className="col-xxl-4"><SelectCity handleCity={handleCity} /></div>
+            <div className="col-xxl-4">
+              <img
                   src={weatherIconMap[weatherData.weather[0].icon]}
                   className="img-fluid"
                   alt={weatherData.weather[0].description}
@@ -113,11 +105,9 @@ const WeatherComponent = () => {
                   {weatherData.weather[0].description.charAt(0).toUpperCase() +
                     weatherData.weather[0].description.slice(1)}{" "}
                   en {weatherData.name}
-                </p>
-              </div>
-            </div>
+                </p></div>
+            <div className="col-xxl-4">{location && <MapComponent location={location} />}</div>
           </div>
-        </div>
       )}
 
       <span>

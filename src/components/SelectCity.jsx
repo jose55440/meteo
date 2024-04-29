@@ -62,7 +62,7 @@ export const SelectCity = ({ handleCity }) => {
         {/* Muestra una sublista que al darle click en uno de ellos se pone en el input  */}
         
         {data &&
-        <ul className="list-group dropdown-menu mt-5">
+        <ul className="list-group p-0 dropdown-menu mt-5">
           {data.map((city) => (
             <li key={city.id} className="list-group-item dropdown-item" onClick={() => selectFinalData(city)}>
               {city.name}-{city.state}
