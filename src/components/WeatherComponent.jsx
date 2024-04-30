@@ -71,7 +71,7 @@ const WeatherComponent = () => {
 
           // Convertir la respuesta a formato JSON
           const data = await response.json();
-
+          console.log(data)
           // Establecer los datos meteorológicos en el estado
           setWeatherData(data);
         } catch (error) {
@@ -104,7 +104,7 @@ const WeatherComponent = () => {
                 <p>
                   {weatherData.weather[0].description.charAt(0).toUpperCase() +
                     weatherData.weather[0].description.slice(1)}{" "}
-                  en {weatherData.name}
+                  en {weatherData.name} a {weatherData.main.temp}°C con una maxima de {weatherData.main.temp_max}°C y una minima de {weatherData.main.temp_min}°C 
                 </p></div>
             <div className="col-xxl-4">{location && <MapComponent location={location} />}</div>
           </div>
