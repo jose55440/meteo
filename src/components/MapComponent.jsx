@@ -33,7 +33,7 @@ const MapComponent = ({ location }) => {
   }, [location]);
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyDAMSAe-ZYyaF2yolrxIBZgCjZ72hhlH1I">
+    <LoadScript googleMapsApiKey={import.meta.env.VITE_API_KEY_GOOGLE}>
       {mapLoaded && (
         <GoogleMap
           mapContainerStyle={containerStyle}

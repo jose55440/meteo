@@ -58,7 +58,7 @@ const WeatherComponent = () => {
     const fetchWeatherData = async () => {
       // Verificar si hay una ubicación
       if (location) {
-        const apiKey = "b14a38bd4b1d38a3fc6d998bf6bbb5c2";
+        const apiKey = import.meta.env.VITE_API_KEY;
         const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${apiKey}&units=metric&lang=sp`;
 
         try {

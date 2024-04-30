@@ -3,7 +3,8 @@ import React from 'react'
 export const fetchNames = async (city) => {
   // Le pasamos el nombre de la ciudad o pueblo y te devuelve un array 
     try {
-      const apiKey = 'b14a38bd4b1d38a3fc6d998bf6bbb5c2';
+      
+      const apiKey = import.meta.env.VITE_API_KEY;
       const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`;
       const response = await fetch(url);
       if (!response.ok) {
