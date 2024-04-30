@@ -71,7 +71,7 @@ const WeatherComponent = () => {
 
           // Convertir la respuesta a formato JSON
           const data = await response.json();
-          console.log(data)
+          
           // Establecer los datos meteorológicos en el estado
           setWeatherData(data);
         } catch (error) {
