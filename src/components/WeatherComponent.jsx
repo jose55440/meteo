@@ -12,6 +12,7 @@ import thunderstorm from "../assets/tormenta.png";
 import snow from "../assets/tormenta.png";
 import mist from "../assets/lluvioso.png";
 import { SelectCity } from "./SelectCity";
+import { fetchWeatherData } from "../helpers/fetchWeatherData";
 
 // Objeto que mapea los códigos de tiempo meteorológico a las imágenes
 const weatherIconMap = {
@@ -53,36 +54,27 @@ const WeatherComponent = () => {
     });
   };
 
-  useEffect(() => {
-    // Definir una función asíncrona para hacer la solicitud a la API de OpenWeatherMap
-    const fetchWeatherData = async () => {
-      // Verificar si hay una ubicación
-      if (location) {
-        const apiKey = import.meta.env.VITE_API_KEY;
-        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${apiKey}&units=metric&lang=sp`;
-
-        try {
-          // Realizar la solicitud a la API y obtener la respuesta
-          const response = await fetch(apiUrl);
-
-          if (!response.ok) {
-            throw new Error("Error al obtener los datos meteorológicos");
-          }
-
-          // Convertir la respuesta a formato JSON
-          const data = await response.json();
-          
-          // Establecer los datos meteorológicos en el estado
-          setWeatherData(data);
-        } catch (error) {
-          // Manejar errores
-          console.error("Error al obtener los datos meteorológicos:", error);
-        }
+   useEffect(  () => {
+    
+    
+    const fetchData = async () => {
+      try {
+        // Llamar a la función asíncrona y esperar la respuesta
+        const { data } = await fetchWeatherData(location);
+        
+        // Establecer los datos meteorológicos en el estado
+        setWeatherData(data);
+        
+        // Registrar los datos en la consola
+        console.log(data);
+      } catch (error) {
+        // Manejar errores
+        console.error("Error al obtener los datos meteorológicos:", error);
       }
     };
-
-    // Llamar a la función asíncrona
-    fetchWeatherData();
+  
+    // Llamar a la función fetchData cuando cambie la ubicación
+    fetchData();
   }, [location]);
 
   return (
